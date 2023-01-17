@@ -1,0 +1,19 @@
+rule someRule
+{
+	meta:
+		author: "ABDUL"
+		description = "Basic yara rule for detecting malware"
+	strings:
+		$virdetect_hex = { E2 34 ?? C8 A? FB }
+
+		$v_string = “PROCESS MONITOR” nocase
+		$v_string1 ="SOFTICE" wide ascii
+		$v_string2 = ".php" 
+		$v_string3 = "Mutexes" nocase
+
+	condition:
+		$virdetect_hex or $v_string
+		$v_string1 and $v_string2
+		$v_string3 
+
+}
